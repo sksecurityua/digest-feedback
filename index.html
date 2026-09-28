@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Опитування щодо огляду ситуації з безпекою · SK Security</title>
+<meta name="description" content="Анкета для клієнтів SK Security: який формат щотижневого огляду ситуації з безпекою зручніший у роботі.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23051C2C'/><path d='M50 18l26 11v22c0 17-11 27-26 31-15-4-26-14-26-31V29z' fill='%2300A9F4'/></svg>">
+<style>
+:root{
+  --deep:#051C2C; --blue:#2251FF; --cyan:#00A9F4; --red:#D0021B;
+  --amber:#E8A33D; --green:#137F4B;
+  --ink:#1B2733; --muted:#5B6770; --line:#DFE3E8; --bg:#F5F7FA;
+  --card:#FFFFFF; --focus:#2251FF;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --deep:#0A2233; --ink:#E8ECF1; --muted:#A3AEB9; --line:#2A3947;
+    --bg:#0D151C; --card:#141F2A; --cyan:#4DC4FF; --blue:#6B8CFF;
+  }
+}
+:root[data-theme="dark"]{
+  --deep:#0A2233; --ink:#E8ECF1; --muted:#A3AEB9; --line:#2A3947;
+  --bg:#0D151C; --card:#141F2A; --cyan:#4DC4FF; --blue:#6B8CFF;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+}
+.wrap{max-width:780px; margin:0 auto; padding:0 16px 72px}
+
+/* ── шапка ─────────────────────────────────────────── */
+.hero{background:var(--deep); color:#fff; padding:36px 0 30px; margin-bottom:26px}
+.hero .wrap{padding-bottom:0}
+.brand{
+  font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--cyan); font-weight:700; margin-bottom:14px;
+}
+.hero h1{font-size:30px; line-height:1.2; font-weight:600; margin:0 0 12px; letter-spacing:-.01em}
+.hero p{margin:0; color:rgba(255,255,255,.78); font-size:16px; max-width:60ch}
+.hero .rule{width:56px; height:4px; background:var(--cyan); margin:18px 0 0}
+
+/* ── картки ────────────────────────────────────────── */
+.intro{
+  background:var(--card); border:1px solid var(--line); border-left:4px solid var(--blue);
+  border-radius:8px; padding:18px 20px; margin-bottom:22px;
+}
+.intro p{margin:0 0 10px} .intro p:last-child{margin:0}
+.intro .tag{
+  display:inline-block; background:var(--bg); border:1px solid var(--line);
+  border-radius:99px; padding:3px 11px; font-size:13px; color:var(--muted); margin-right:6px;
+}
+fieldset{
+  background:var(--card); border:1px solid var(--line); border-radius:8px;
+  padding:20px; margin:0 0 18px;
+}
+legend{
+  padding:0 10px; margin-left:-4px; font-weight:700; font-size:17px; color:var(--deep);
+}
+:root[data-theme="dark"] legend,
+@media (prefers-color-scheme: dark){legend{color:var(--cyan)}}
+.step{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:24px; height:24px; border-radius:50%; background:var(--blue); color:#fff;
+  font-size:13px; font-weight:700; margin-right:9px; flex:none;
+}
+.hint{color:var(--muted); font-size:14px; margin:-2px 0 16px}
+
+/* ── поля ──────────────────────────────────────────── */
+label.q{display:block; font-weight:600; margin:18px 0 8px; font-size:15px}
+label.q:first-of-type{margin-top:0}
+.req{color:var(--red); font-weight:700}
+input[type=text], input[type=email], select, textarea{
+  width:100%; padding:11px 12px; font:inherit; color:var(--ink);
+  background:var(--bg); border:1px solid var(--line); border-radius:6px;
+}
+textarea{min-height:92px; resize:vertical}
+input:focus, select:focus, textarea:focus{
+  outline:2px solid var(--focus); outline-offset:1px; border-color:var(--focus);
+}
+.opts{display:grid; gap:8px}
+.opts.two{grid-template-columns:1fr 1fr}
+@media (max-width:560px){.opts.two{grid-template-columns:1fr}}
+.opt{
+  display:flex; gap:10px; align-items:flex-start;
+  border:1px solid var(--line); border-radius:6px; padding:11px 13px;
+  background:var(--bg); cursor:pointer; transition:border-color .12s, background .12s;
+}
+.opt:hover{border-color:var(--blue)}
+.opt:focus-within{outline:2px solid var(--focus); outline-offset:1px}
+.opt input{margin:3px 0 0; accent-color:var(--blue); flex:none; width:17px; height:17px}
+.opt span{font-size:15px; line-height:1.4}
+.opt span small{display:block; color:var(--muted); font-size:13px; margin-top:2px}
+
+/* шкала 1–5 */
+.scale{display:flex; gap:6px; flex-wrap:wrap; align-items:center}
+.scale label{
+  flex:1; min-width:56px; text-align:center; border:1px solid var(--line);
+  border-radius:6px; padding:9px 4px; background:var(--bg); cursor:pointer; font-size:15px;
+}
+.scale label:hover{border-color:var(--blue)}
+.scale input{position:absolute; opacity:0; width:0; height:0}
+.scale input:checked + span{
+  display:block; margin:-9px -4px; padding:9px 4px; border-radius:5px;
+  background:var(--blue); color:#fff; font-weight:700;
+}
+.scale input:focus-visible + span{outline:2px solid var(--focus); outline-offset:2px}
+.scale-ends{display:flex; justify-content:space-between; color:var(--muted); font-size:13px; margin-top:6px}
+
+/* порівняння форматів */
+.cmp{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:4px 0 4px}
+@media (max-width:620px){.cmp{grid-template-columns:1fr}}
+.cmp .box{border:1px solid var(--line); border-radius:8px; padding:14px 15px; background:var(--bg)}
+.cmp .box h3{margin:0 0 8px; font-size:15px; color:var(--deep)}
+.cmp .box.b h3{color:var(--deep)}
+.cmp .box ul{margin:0; padding-left:18px; font-size:14px; color:var(--muted)}
+.cmp .box li{margin-bottom:4px}
+.badge{
+  display:inline-block; width:22px; height:22px; line-height:22px; text-align:center;
+  border-radius:5px; color:#fff; font-weight:700; font-size:13px; margin-right:7px;
+}
+.badge.a{background:var(--muted)} .badge.b{background:var(--blue)}
+:root[data-theme="dark"] .cmp .box h3{color:var(--cyan)}
+
+.gotcha{position:absolute; left:-9999px; opacity:0; height:0; overflow:hidden}
+.actions{display:flex; gap:14px; align-items:center; flex-wrap:wrap; margin-top:8px}
+button{
+  background:var(--blue); color:#fff; border:0; border-radius:6px;
+  padding:14px 30px; font:600 16px/1 inherit; cursor:pointer;
+}
+button:hover{background:#1642E6}
+button:disabled{opacity:.55; cursor:default}
+button:focus-visible{outline:2px solid var(--deep); outline-offset:3px}
+.note{color:var(--muted); font-size:13.5px}
+.msg{padding:14px 16px; border-radius:6px; margin-bottom:16px; display:none; font-size:15px}
+.msg.err{display:block; background:#FDF1F2; border:1px solid #F3C4C9; color:#8E0E1C}
+:root[data-theme="dark"] .msg.err{background:#3A1A1E; border-color:#6B2830; color:#FFB3BC}
+.done{
+  display:none; background:var(--card); border:1px solid var(--line);
+  border-left:4px solid var(--green); border-radius:8px; padding:26px 24px;
+}
+.done h2{margin:0 0 10px; font-size:21px; color:var(--deep)}
+:root[data-theme="dark"] .done h2{color:var(--cyan)}
+.done p{margin:0 0 8px; color:var(--muted)}
+footer{
+  margin-top:30px; padding-top:18px; border-top:1px solid var(--line);
+  color:var(--muted); font-size:13px;
+}
+footer b{color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">SK Security · Аналітичний моніторинг</div>
+    <h1>Огляд ситуації з безпекою:<br>який формат зручніший у роботі</h1>
+    <p>Ми надіслали вам два варіанти щотижневого огляду за один і той самий період.
+       Просимо приділити кілька хвилин, щоб ми готували документ у форматі,
+       який справді використовується.</p>
+    <div class="rule"></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="intro">
+    <p><span class="tag">≈ 5 хвилин</span><span class="tag">Відповіді конфіденційні</span>
+       <span class="tag">Обов'язкових питань — три</span></p>
+    <p>Анкета стосується <b>подачі та складу</b> огляду, а не окремих подій у ньому.
+       Якщо якесь питання не стосується вашої компанії — пропустіть його.
+       Найцінніші для нас — відповіді у вільній формі наприкінці.</p>
+  </div>
+
+  <div class="msg" id="err" role="alert"></div>
+
+  <form id="f" action="https://formspree.io/f/xppwogbo" method="POST" novalidate>
+    <input type="hidden" name="_subject" value="Анкета: формат огляду з безпекою">
+    <input type="text" name="_gotcha" class="gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+    <!-- 1 ─────────────────────────────────────────── -->
+    <fieldset>
+      <legend><span class="step">1</span>Про вас</legend>
+      <p class="hint">Потрібно, щоб зіставити відповіді з профілем компанії. Ім'я вказувати не обов'язково.</p>
+
+      <label class="q" for="company">Компанія <span class="req">*</span></label>
+      <input type="text" id="company" name="Компанія" required autocomplete="organization">
+
+      <label class="q" for="role">Ваша роль</label>
+      <select id="role" name="Роль">
+        <option value="">— оберіть —</option>
+        <option>Керівник компанії / власник</option>
+        <option>Безпека, комплаєнс, ризик-менеджмент</option>
+        <option>Логістика та ланцюг постачання</option>
+        <option>Операційне управління</option>
+        <option>Фінанси</option>
+        <option>Комунікації / PR</option>
+        <option>HR та охорона праці</option>
+        <option>Інше</option>
+      </select>
+
+      <label class="q">Хто у вашій компанії читає огляд?</label>
+      <div class="opts two">
+        <label class="opt"><input type="checkbox" name="Аудиторія" value="Тільки я"><span>Тільки я</span></label>
+        <label class="opt"><input type="checkbox" name="Аудиторія" value="Керівництво"><span>Керівництво</span></label>
+        <label class="opt"><input type="checkbox" name="Аудиторія" value="Служба безпеки"><span>Служба безпеки</span></label>
+        <label class="opt"><input type="checkbox" name="Аудиторія" value="Логістика"><span>Логістика і склади</span></label>
+        <label class="opt"><input type="checkbox" name="Аудиторія" value="Регіональні команди"><span>Регіональні команди</span></label>
+        <label class="opt"><input type="checkbox" name="Аудиторія" value="Головний офіс за кордоном"><span>Головний офіс за кордоном</span></label>
+      </div>
+
+      <label class="q" for="email">E-mail для уточнень <span class="note">(за бажанням)</span></label>
+      <input type="email" id="email" name="email" autocomplete="email" placeholder="name@company.com">
+    </fieldset>
+
+    <!-- 2 ─────────────────────────────────────────── -->
+    <fieldset>
+      <legend><span class="step">2</span>Порівняння двох форматів</legend>
+      <p class="hint">Обидва огляди охоплюють один період і ті самі джерела. Різниця — у структурі та подачі.</p>
+
+      <div class="cmp">
+        <div class="box">
+          <h3><span class="badge a">А</span>Розгорнутий текстовий</h3>
+          <ul>
+            <li>20+ сторінок суцільного тексту</li>
+            <li>Понад 20 тематичних розділів</li>
+            <li>Ширше охоплення: ЗАЕС, мінна загроза, кібербезпека, мобілізація, ринок праці, зерновий коридор, зміни законодавства</li>
+            <li>Без графіки та схем</li>
+          </ul>
+        </div>
+        <div class="box b">
+          <h3><span class="badge b">Б</span>Структурований візуальний</h3>
+          <ul>
+            <li>20 сторінок із таблицями та графіками</li>
+            <li>Ключові висновки на першій сторінці</li>
+            <li>Окремий розділ про об'єкти вашого ланцюга постачання</li>
+            <li>Карта, матриця рекомендацій, позначки достовірності джерел</li>
+          </ul>
+        </div>
+      </div>
+
+      <label class="q">Який формат зручніший для вашої роботи? <span class="req">*</span></label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="Формат" value="А — розгорнутий текстовий" required>
+          <span><b>Формат А</b> — розгорнутий текстовий<small>Ширше охоплення тем важливіше за компактність</small></span></label>
+        <label class="opt"><input type="radio" name="Формат" value="Б — структурований візуальний">
+          <span><b>Формат Б</b> — структурований візуальний<small>Швидше зчитується, більше прикладного</small></span></label>
+        <label class="opt"><input type="radio" name="Формат" value="Поєднання А і Б">
+          <span><b>Поєднання</b><small>Структура і візуалізація Б, але з тематичним охопленням А</small></span></label>
+        <label class="opt"><input type="radio" name="Формат" value="Обидва надлишкові">
+          <span><b>Обидва надлишкові</b><small>Достатньо короткої зведеної довідки</small></span></label>
+      </div>
+
+      <label class="q" for="why">Чому саме цей вибір?</label>
+      <textarea id="why" name="Чому цей формат" placeholder="Що спрацювало, а що заважало під час читання"></textarea>
+    </fieldset>
+
+    <!-- 3 ─────────────────────────────────────────── -->
+    <fieldset>
+      <legend><span class="step">3</span>Зміст: що потрібно, а що зайве</legend>
+
+      <label class="q">Які розділи ви читаєте в першу чергу? <span class="note">(до п'яти)</span></label>
+      <div class="opts two">
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Ключові висновки"><span>Ключові висновки тижня</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Об'єкти ланцюга постачання"><span>Об'єкти ланцюга постачання</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Рекомендації"><span>Рекомендації тижня</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Рівень загроз по регіонах"><span>Рівень загроз по регіонах</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Повітряні удари"><span>Повітряні удари і хронологія</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Енергетика"><span>Стан енергосистеми</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Транспорт і логістика"><span>Транспорт і логістика</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Пункти пропуску"><span>Пункти пропуску на кордоні</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Економіка"><span>Економіка та суспільство</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Міжнародні події"><span>Міжнародні події</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Комендантська година"><span>Комендантська година</span></label>
+        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Карта"><span>Карта локалізації ризиків</span></label>
+      </div>
+
+      <label class="q">Яких розділів вам бракує?</label>
+      <div class="opts two">
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Кібербезпека"><span>Кібербезпека</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Мінна загроза"><span>Мінна загроза</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Стан ЗАЕС"><span>Стан ЗАЕС</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Військовий облік і мобілізація"><span>Військовий облік і мобілізація</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Зміни законодавства"><span>Зміни нормативної бази</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Ринок праці та зарплати"><span>Ринок праці та зарплати</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Зерновий коридор і порти"><span>Зерновий коридор і порти</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Криміногенна ситуація"><span>Криміногенна ситуація</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Настрої в суспільстві"><span>Настрої в суспільстві</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Залізнична інфраструктура"><span>Залізнична інфраструктура</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Галузевий зріз"><span>Зріз саме по нашій галузі</span></label>
+        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Нічого не бракує"><span>Нічого не бракує</span></label>
+      </div>
+
+      <label class="q" for="drop">Що можна прибрати без втрати для вас?</label>
+      <textarea id="drop" name="Що прибрати" placeholder="Розділи, які ви пропускаєте"></textarea>
+    </fieldset>
+
+    <!-- 4 ─────────────────────────────────────────── -->
+    <fieldset>
+      <legend><span class="step">4</span>Подача матеріалу</legend>
+
+      <label class="q">Оптимальний обсяг випуску</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="Обсяг" value="1-2 сторінки"><span>1–2 сторінки — тільки найважливіше</span></label>
+        <label class="opt"><input type="radio" name="Обсяг" value="5-8 сторінок"><span>5–8 сторінок — стислий огляд із цифрами</span></label>
+        <label class="opt"><input type="radio" name="Обсяг" value="15-20 сторінок"><span>15–20 сторінок — як зараз</span></label>
+        <label class="opt"><input type="radio" name="Обсяг" value="Коротка версія + повна"><span>Коротка версія для керівництва + повна для фахівців</span></label>
+      </div>
+
+      <label class="q">Наскільки корисна <b>карта локалізації ризиків</b> з вашими об'єктами?</label>
+      <div class="scale" role="radiogroup" aria-label="Корисність карти">
+        <label><input type="radio" name="Карта" value="1"><span>1</span></label>
+        <label><input type="radio" name="Карта" value="2"><span>2</span></label>
+        <label><input type="radio" name="Карта" value="3"><span>3</span></label>
+        <label><input type="radio" name="Карта" value="4"><span>4</span></label>
+        <label><input type="radio" name="Карта" value="5"><span>5</span></label>
+      </div>
+      <div class="scale-ends"><span>не використовую</span><span>ключовий елемент</span></div>
+
+      <label class="q">Наскільки корисні <b>позначки достовірності джерел</b> [П] [?] [З] [Р] [О]?</label>
+      <div class="scale" role="radiogroup" aria-label="Корисність позначок достовірності">
+        <label><input type="radio" name="Позначки достовірності" value="1"><span>1</span></label>
+        <label><input type="radio" name="Позначки достовірності" value="2"><span>2</span></label>
+        <label><input type="radio" name="Позначки достовірності" value="3"><span>3</span></label>
+        <label><input type="radio" name="Позначки достовірності" value="4"><span>4</span></label>
+        <label><input type="radio" name="Позначки достовірності" value="5"><span>5</span></label>
+      </div>
+      <div class="scale-ends"><span>зайве</span><span>дуже потрібні</span></div>
+
+      <label class="q">Наскільки корисний блок <b>рекомендацій із термінами виконання</b>?</label>
+      <div class="scale" role="radiogroup" aria-label="Корисність рекомендацій">
+        <label><input type="radio" name="Рекомендації" value="1"><span>1</span></label>
+        <label><input type="radio" name="Рекомендації" value="2"><span>2</span></label>
+        <label><input type="radio" name="Рекомендації" value="3"><span>3</span></label>
+        <label><input type="radio" name="Рекомендації" value="4"><span>4</span></label>
+        <label><input type="radio" name="Рекомендації" value="5"><span>5</span></label>
+      </div>
+      <div class="scale-ends"><span>зайве</span><span>працюємо за ними</span></div>
+
+      <label class="q">У якому вигляді зручніше отримувати випуск?</label>
+      <div class="opts two">
+        <label class="opt"><input type="checkbox" name="Формат файлу" value="PDF"><span>PDF</span></label>
+        <label class="opt"><input type="checkbox" name="Формат файлу" value="Word"><span>Word — щоб редагувати</span></label>
+        <label class="opt"><input type="checkbox" name="Формат файлу" value="Лист у тілі листа"><span>Текстом у тілі листа</span></label>
+        <label class="opt"><input type="checkbox" name="Формат файлу" value="Веб-сторінка"><span>Веб-сторінка за посиланням</span></label>
+      </div>
+    </fieldset>
+
+    <!-- 5 ─────────────────────────────────────────── -->
+    <fieldset>
+      <legend><span class="step">5</span>Періодичність і термінові сповіщення</legend>
+
+      <label class="q">Періодичність випуску</label>
+      <div class="opts two">
+        <label class="opt"><input type="radio" name="Періодичність" value="Щотижня"><span>Щотижня — як зараз</span></label>
+        <label class="opt"><input type="radio" name="Періодичність" value="Двічі на тиждень"><span>Двічі на тиждень</span></label>
+        <label class="opt"><input type="radio" name="Періодичність" value="Щодня коротко"><span>Щодня, але коротко</span></label>
+        <label class="opt"><input type="radio" name="Періодичність" value="Раз на два тижні"><span>Раз на два тижні</span></label>
+      </div>
+
+      <label class="q">Чи потрібні <b>термінові сповіщення</b> між випусками — коли подія стосується
+        вашої компанії або її партнерів?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="Термінові сповіщення" value="Так, у месенджер"><span>Так, у месенджер — одразу після виявлення</span></label>
+        <label class="opt"><input type="radio" name="Термінові сповіщення" value="Так, на пошту"><span>Так, окремим листом на пошту</span></label>
+        <label class="opt"><input type="radio" name="Термінові сповіщення" value="Тільки критичні"><span>Тільки якщо подія критична</span></label>
+        <label class="opt"><input type="radio" name="Термінові сповіщення" value="Не потрібні"><span>Не потрібні</span></label>
+      </div>
+
+      <label class="q">Канал для термінових сповіщень</label>
+      <div class="opts two">
+        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="Telegram"><span>Telegram</span></label>
+        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="Viber"><span>Viber</span></label>
+        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="Signal"><span>Signal</span></label>
+        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="WhatsApp"><span>WhatsApp</span></label>
+        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="E-mail"><span>E-mail</span></label>
+        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="Телефонний дзвінок"><span>Телефонний дзвінок</span></label>
+      </div>
+    </fieldset>
+
+    <!-- 6 ─────────────────────────────────────────── -->
+    <fieldset>
+      <legend><span class="step">6</span>Практичне застосування</legend>
+
+      <label class="q">Чи ухвалювали ви рішення на підставі огляду за останні три місяці?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="Вплив на рішення" value="Так, неодноразово"><span>Так, неодноразово</span></label>
+        <label class="opt"><input type="radio" name="Вплив на рішення" value="Один-два рази"><span>Один-два рази</span></label>
+        <label class="opt"><input type="radio" name="Вплив на рішення" value="Використовуємо як фон"><span>Використовуємо як загальний фон</span></label>
+        <label class="opt"><input type="radio" name="Вплив на рішення" value="Поки ні"><span>Поки ні</span></label>
+      </div>
+
+      <label class="q" for="case">Якщо так — який саме випадок?</label>
+      <textarea id="case" name="Приклад застосування" placeholder="Наприклад: перенесли запаси, змінили маршрут, перевірили укриття"></textarea>
+
+      <label class="q" for="reg">Чи готові ви надати <b>актуальний перелік своїх об'єктів</b>
+        (офіси, склади, місця доставки) для нанесення на карту?</label>
+      <div class="opts">
+        <label class="opt"><input type="radio" name="Реєстр об'єктів" value="Так"><span>Так, надамо</span></label>
+        <label class="opt"><input type="radio" name="Реєстр об'єктів" value="Так, після угоди про конфіденційність"><span>Так, після підписання угоди про конфіденційність</span></label>
+        <label class="opt"><input type="radio" name="Реєстр об'єктів" value="Тільки узагальнено"><span>Тільки узагальнено — на рівні міст</span></label>
+        <label class="opt"><input type="radio" name="Реєстр об'єктів" value="Ні"><span>Ні</span></label>
+      </div>
+    </fieldset>
+
+    <!-- 7 ─────────────────────────────────────────── -->
+    <fieldset>
+      <legend><span class="step">7</span>Відкриті питання</legend>
+
+      <label class="q" for="add">Чого бракує в огляді найбільше? <span class="req">*</span></label>
+      <textarea id="add" name="Чого бракує" required
+        placeholder="Одне-два речення — це найважливіша відповідь в анкеті"></textarea>
+
+      <label class="q" for="free">Будь-які інші зауваження</label>
+      <textarea id="free" name="Коментар" placeholder="Зауваження до формулювань, оформлення, доставки"></textarea>
+
+      <div class="actions" style="margin-top:20px">
+        <button type="submit" id="btn">Надіслати відповіді</button>
+        <span class="note">Відповіді надходять напряму аналітичній групі SK Security.</span>
+      </div>
+    </fieldset>
+  </form>
+
+  <div class="done" id="done" role="status">
+    <h2>Дякуємо — відповіді надіслано</h2>
+    <p>Ми врахуємо їх у найближчих випусках. Якщо ви залишили пошту, надішлемо
+       підсумок опитування, коли зберемо відповіді від усіх клієнтів.</p>
+    <p>За потреби пишіть безпосередньо аналітичній групі SK Security.</p>
+  </div>
+
+  <footer>
+    <b>SK Security</b> · аналітичний моніторинг безпекової обстановки<br>
+    Анкета призначена для клієнтів компанії. Зібрані відповіді використовуються
+    виключно для доопрацювання формату огляду і не передаються третім сторонам.
+  </footer>
+</div>
+
+<script>
+(function(){
+  var f=document.getElementById('f'), btn=document.getElementById('btn'),
+      err=document.getElementById('err'), done=document.getElementById('done');
+
+  function fail(t){ err.textContent=t; err.className='msg err';
+                    err.scrollIntoView({behavior:'smooth',block:'center'}); }
+
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    err.className='msg';
+
+    if(!f.checkValidity()){
+      var bad=f.querySelector(':invalid');
+      fail('Будь ласка, заповніть обов’язкові поля, позначені зірочкою.');
+      if(bad){ bad.focus(); }
+      return;
+    }
+
+    btn.disabled=true; btn.textContent='Надсилаємо…';
+
+    fetch(f.action, {
+      method:'POST',
+      body:new FormData(f),
+      headers:{'Accept':'application/json'}
+    }).then(function(r){
+      if(r.ok){
+        f.style.display='none';
+        done.style.display='block';
+        done.scrollIntoView({behavior:'smooth',block:'start'});
+        try{ localStorage.setItem('sks-survey-sent','1'); }catch(e){}
+      }else{
+        return r.json().then(function(d){
+          throw new Error((d.errors||[]).map(function(x){return x.message}).join(', ')
+                          || 'Помилка надсилання');
+        });
+      }
+    }).catch(function(){
+      btn.disabled=false; btn.textContent='Надіслати відповіді';
+      fail('Не вдалося надіслати відповіді. Перевірте з’єднання і спробуйте ще раз — або надішліть відповіді листом.');
+    });
+  });
+
+  // обмеження: не більше п'яти позначок у питанні про найкорисніші розділи
+  var top5=f.querySelectorAll('input[name="Найкорисніші розділи"]');
+  top5.forEach(function(c){
+    c.addEventListener('change', function(){
+      var n=0; top5.forEach(function(x){ if(x.checked) n++; });
+      if(n>5){ c.checked=false; }
+    });
+  });
+})();
+</script>
+</body>
+</html>
