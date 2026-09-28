@@ -196,11 +196,10 @@ footer b{color:var(--ink)}
 <div class="wrap">
 
   <div class="intro">
-    <p><span class="tag">≈ 5 хвилин</span><span class="tag">Відповіді конфіденційні</span>
-       <span class="tag">Обов'язкових питань — три</span></p>
-    <p>Анкета стосується <b>подачі та складу</b> огляду, а не окремих подій у ньому.
-       Якщо якесь питання не стосується вашої компанії — пропустіть його.
-       Найцінніші для нас — відповіді у вільній формі наприкінці.</p>
+    <p><span class="tag">≈ 3 хвилини</span><span class="tag">Відповіді конфіденційні</span>
+       <span class="tag">Обов'язкове питання — одне</span></p>
+    <p>Анкета стосується <b>формату огляду та корисності його розділів</b>, а не окремих
+       подій у ньому. Будь-яке питання можна пропустити.</p>
   </div>
 
   <div class="msg" id="err" role="alert"></div>
@@ -281,7 +280,7 @@ footer b{color:var(--ink)}
 
     <!-- 3 ─────────────────────────────────────────── -->
     <fieldset>
-      <legend><span class="step">3</span>Зміст: що потрібно, а що зайве</legend>
+      <legend><span class="step">3</span>Корисність розділів</legend>
 
       <label class="q">Наскільки корисний кожен розділ особисто для вас?</label>
       <p class="hint">Пересуньте повзунок для кожного рядка: <b>0</b> — не потрібно взагалі,
@@ -374,7 +373,7 @@ footer b{color:var(--ink)}
 
     <!-- 4 ─────────────────────────────────────────── -->
     <fieldset>
-      <legend><span class="step">4</span>Подача матеріалу</legend>
+      <legend><span class="step">4</span>Обсяг і спосіб доставки</legend>
 
       <label class="q">Оптимальний обсяг випуску</label>
       <div class="opts">
@@ -383,36 +382,6 @@ footer b{color:var(--ink)}
         <label class="opt"><input type="radio" name="Обсяг" value="15-20 сторінок"><span>15–20 сторінок — як зараз</span></label>
         <label class="opt"><input type="radio" name="Обсяг" value="Коротка версія + повна"><span>Коротка версія для керівництва + повна для фахівців</span></label>
       </div>
-
-      <label class="q">Наскільки корисна <b>карта локалізації ризиків</b> з вашими об'єктами?</label>
-      <div class="scale" role="radiogroup" aria-label="Корисність карти">
-        <label><input type="radio" name="Карта" value="1"><span>1</span></label>
-        <label><input type="radio" name="Карта" value="2"><span>2</span></label>
-        <label><input type="radio" name="Карта" value="3"><span>3</span></label>
-        <label><input type="radio" name="Карта" value="4"><span>4</span></label>
-        <label><input type="radio" name="Карта" value="5"><span>5</span></label>
-      </div>
-      <div class="scale-ends"><span>не використовую</span><span>ключовий елемент</span></div>
-
-      <label class="q">Наскільки корисні <b>позначки достовірності джерел</b> [П] [?] [З] [Р] [О]?</label>
-      <div class="scale" role="radiogroup" aria-label="Корисність позначок достовірності">
-        <label><input type="radio" name="Позначки достовірності" value="1"><span>1</span></label>
-        <label><input type="radio" name="Позначки достовірності" value="2"><span>2</span></label>
-        <label><input type="radio" name="Позначки достовірності" value="3"><span>3</span></label>
-        <label><input type="radio" name="Позначки достовірності" value="4"><span>4</span></label>
-        <label><input type="radio" name="Позначки достовірності" value="5"><span>5</span></label>
-      </div>
-      <div class="scale-ends"><span>зайве</span><span>дуже потрібні</span></div>
-
-      <label class="q">Наскільки корисний блок <b>рекомендацій із термінами виконання</b>?</label>
-      <div class="scale" role="radiogroup" aria-label="Корисність рекомендацій">
-        <label><input type="radio" name="Рекомендації" value="1"><span>1</span></label>
-        <label><input type="radio" name="Рекомендації" value="2"><span>2</span></label>
-        <label><input type="radio" name="Рекомендації" value="3"><span>3</span></label>
-        <label><input type="radio" name="Рекомендації" value="4"><span>4</span></label>
-        <label><input type="radio" name="Рекомендації" value="5"><span>5</span></label>
-      </div>
-      <div class="scale-ends"><span>зайве</span><span>працюємо за ними</span></div>
 
       <label class="q">У якому вигляді зручніше отримувати випуск?</label>
       <div class="opts two">
@@ -425,60 +394,12 @@ footer b{color:var(--ink)}
 
     <!-- 5 ─────────────────────────────────────────── -->
     <fieldset>
-      <legend><span class="step">5</span>Періодичність і термінові сповіщення</legend>
+      <legend><span class="step">5</span>Відкриті питання</legend>
 
-      <label class="q">Періодичність випуску</label>
-      <div class="opts two">
-        <label class="opt"><input type="radio" name="Періодичність" value="Щотижня"><span>Щотижня — як зараз</span></label>
-        <label class="opt"><input type="radio" name="Періодичність" value="Двічі на тиждень"><span>Двічі на тиждень</span></label>
-        <label class="opt"><input type="radio" name="Періодичність" value="Щодня коротко"><span>Щодня, але коротко</span></label>
-        <label class="opt"><input type="radio" name="Періодичність" value="Раз на два тижні"><span>Раз на два тижні</span></label>
-      </div>
-
-      <label class="q">Чи потрібні <b>термінові сповіщення</b> між випусками — коли подія стосується
-        вашої компанії або її партнерів?</label>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="Термінові сповіщення" value="Так, у месенджер"><span>Так, у месенджер — одразу після виявлення</span></label>
-        <label class="opt"><input type="radio" name="Термінові сповіщення" value="Так, на пошту"><span>Так, окремим листом на пошту</span></label>
-        <label class="opt"><input type="radio" name="Термінові сповіщення" value="Тільки критичні"><span>Тільки якщо подія критична</span></label>
-        <label class="opt"><input type="radio" name="Термінові сповіщення" value="Не потрібні"><span>Не потрібні</span></label>
-      </div>
-
-      <label class="q">Канал для термінових сповіщень</label>
-      <div class="opts two">
-        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="Telegram"><span>Telegram</span></label>
-        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="Viber"><span>Viber</span></label>
-        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="Signal"><span>Signal</span></label>
-        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="WhatsApp"><span>WhatsApp</span></label>
-        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="E-mail"><span>E-mail</span></label>
-        <label class="opt"><input type="checkbox" name="Канал сповіщень" value="Телефонний дзвінок"><span>Телефонний дзвінок</span></label>
-      </div>
-    </fieldset>
-
-    <!-- 6 ─────────────────────────────────────────── -->
-    <fieldset>
-      <legend><span class="step">6</span>Практичне застосування</legend>
-
-      <label class="q">Чи ухвалювали ви рішення на підставі огляду за останні три місяці?</label>
-      <div class="opts">
-        <label class="opt"><input type="radio" name="Вплив на рішення" value="Так, неодноразово"><span>Так, неодноразово</span></label>
-        <label class="opt"><input type="radio" name="Вплив на рішення" value="Один-два рази"><span>Один-два рази</span></label>
-        <label class="opt"><input type="radio" name="Вплив на рішення" value="Використовуємо як фон"><span>Використовуємо як загальний фон</span></label>
-        <label class="opt"><input type="radio" name="Вплив на рішення" value="Поки ні"><span>Поки ні</span></label>
-      </div>
-
-      <label class="q" for="case">Якщо так — який саме випадок?</label>
-      <textarea id="case" name="Приклад застосування" placeholder="Наприклад: перенесли запаси, змінили маршрут, перевірили укриття"></textarea>
-
-    </fieldset>
-
-    <!-- 7 ─────────────────────────────────────────── -->
-    <fieldset>
-      <legend><span class="step">7</span>Відкриті питання</legend>
-
-      <label class="q" for="add">Чого бракує в огляді найбільше? <span class="req">*</span></label>
-      <textarea id="add" name="Чого бракує" required
-        placeholder="Одне-два речення — це найважливіша відповідь в анкеті"></textarea>
+      <label class="q" for="add">Чого бракує в огляді найбільше?
+        <span class="note">(за бажанням)</span></label>
+      <textarea id="add" name="Чого бракує"
+        placeholder="Одне-два речення"></textarea>
 
       <label class="q" for="free">Будь-які інші зауваження</label>
       <textarea id="free" name="Коментар" placeholder="Зауваження до формулювань, оформлення, доставки"></textarea>
