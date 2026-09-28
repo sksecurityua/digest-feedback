@@ -110,6 +110,34 @@ input:focus, select:focus, textarea:focus{
 .scale input:focus-visible + span{outline:2px solid var(--focus); outline-offset:2px}
 .scale-ends{display:flex; justify-content:space-between; color:var(--muted); font-size:13px; margin-top:6px}
 
+/* слайдери корисності розділів */
+.rate{display:grid; gap:2px; margin:0 0 4px}
+.rate-row{
+  display:grid; grid-template-columns:1fr 190px 34px; gap:14px; align-items:center;
+  border:1px solid transparent; border-radius:6px; padding:7px 9px;
+}
+.rate-row:hover{background:var(--bg)}
+.rate-row.new{border-color:var(--line)}
+.rate-row .nm{font-size:15px; line-height:1.35}
+.rate-row .nm small{display:block; color:var(--muted); font-size:12.5px; margin-top:1px}
+.rate-row input[type=range]{width:100%; accent-color:var(--blue); cursor:pointer; margin:0}
+.rate-row input[type=range]:focus-visible{outline:2px solid var(--focus); outline-offset:3px}
+.rate-row .val{
+  text-align:center; font-weight:700; font-size:15px; color:var(--blue);
+  font-variant-numeric:tabular-nums;
+}
+.rate-row .val.zero{color:var(--muted)}
+.rate-ends{
+  display:flex; justify-content:space-between; color:var(--muted); font-size:13px;
+  margin:2px 9px 12px; padding-top:6px; border-top:1px solid var(--line);
+}
+@media (max-width:620px){
+  .rate-row{grid-template-columns:1fr 46px; row-gap:6px; padding:9px; border-color:var(--line)}
+  .rate-row .nm{grid-column:1}
+  .rate-row .val{grid-column:2}
+  .rate-row input[type=range]{grid-column:1 / -1}
+}
+
 /* порівняння форматів */
 .cmp{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:4px 0 4px}
 @media (max-width:620px){.cmp{grid-template-columns:1fr}}
@@ -186,13 +214,18 @@ footer b{color:var(--ink)}
       <legend><span class="step">1</span>Про вас</legend>
       <p class="hint">Потрібно, щоб зіставити відповіді з профілем компанії. Ім'я вказувати не обов'язково.</p>
 
-      <label class="q" for="company">Компанія <span class="req">*</span></label>
-      <input type="text" id="company" name="Компанія" required autocomplete="organization">
+      <label class="q">Компанія <span class="req">*</span></label>
+      <div class="opts two">
+        <label class="opt"><input type="radio" name="Компанія" value="Марс Україна" checked required>
+          <span>Марс Україна<small>ТОВ «МАРС УКРАЇНА»</small></span></label>
+        <label class="opt"><input type="radio" name="Компанія" value="Рояль Канін Україна">
+          <span>Рояль Канін Україна<small>ТОВ «РОЯЛЬ КАНІН УКРАЇНА»</small></span></label>
+      </div>
 
       <label class="q" for="role">Ваша роль</label>
       <select id="role" name="Роль">
         <option value="">— оберіть —</option>
-        <option>Керівник компанії / власник</option>
+        <option>Керівництво компанії</option>
         <option>Безпека, комплаєнс, ризик-менеджмент</option>
         <option>Логістика та ланцюг постачання</option>
         <option>Операційне управління</option>
@@ -201,16 +234,6 @@ footer b{color:var(--ink)}
         <option>HR та охорона праці</option>
         <option>Інше</option>
       </select>
-
-      <label class="q">Хто у вашій компанії читає огляд?</label>
-      <div class="opts two">
-        <label class="opt"><input type="checkbox" name="Аудиторія" value="Тільки я"><span>Тільки я</span></label>
-        <label class="opt"><input type="checkbox" name="Аудиторія" value="Керівництво"><span>Керівництво</span></label>
-        <label class="opt"><input type="checkbox" name="Аудиторія" value="Служба безпеки"><span>Служба безпеки</span></label>
-        <label class="opt"><input type="checkbox" name="Аудиторія" value="Логістика"><span>Логістика і склади</span></label>
-        <label class="opt"><input type="checkbox" name="Аудиторія" value="Регіональні команди"><span>Регіональні команди</span></label>
-        <label class="opt"><input type="checkbox" name="Аудиторія" value="Головний офіс за кордоном"><span>Головний офіс за кордоном</span></label>
-      </div>
 
       <label class="q" for="email">E-mail для уточнень <span class="note">(за бажанням)</span></label>
       <input type="email" id="email" name="email" autocomplete="email" placeholder="name@company.com">
@@ -250,8 +273,6 @@ footer b{color:var(--ink)}
           <span><b>Формат Б</b> — структурований візуальний<small>Швидше зчитується, більше прикладного</small></span></label>
         <label class="opt"><input type="radio" name="Формат" value="Поєднання А і Б">
           <span><b>Поєднання</b><small>Структура і візуалізація Б, але з тематичним охопленням А</small></span></label>
-        <label class="opt"><input type="radio" name="Формат" value="Обидва надлишкові">
-          <span><b>Обидва надлишкові</b><small>Достатньо короткої зведеної довідки</small></span></label>
       </div>
 
       <label class="q" for="why">Чому саме цей вибір?</label>
@@ -262,40 +283,93 @@ footer b{color:var(--ink)}
     <fieldset>
       <legend><span class="step">3</span>Зміст: що потрібно, а що зайве</legend>
 
-      <label class="q">Які розділи ви читаєте в першу чергу? <span class="note">(до п'яти)</span></label>
-      <div class="opts two">
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Ключові висновки"><span>Ключові висновки тижня</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Об'єкти ланцюга постачання"><span>Об'єкти ланцюга постачання</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Рекомендації"><span>Рекомендації тижня</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Рівень загроз по регіонах"><span>Рівень загроз по регіонах</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Повітряні удари"><span>Повітряні удари і хронологія</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Енергетика"><span>Стан енергосистеми</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Транспорт і логістика"><span>Транспорт і логістика</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Пункти пропуску"><span>Пункти пропуску на кордоні</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Економіка"><span>Економіка та суспільство</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Міжнародні події"><span>Міжнародні події</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Комендантська година"><span>Комендантська година</span></label>
-        <label class="opt"><input type="checkbox" name="Найкорисніші розділи" value="Карта"><span>Карта локалізації ризиків</span></label>
+      <label class="q">Наскільки корисний кожен розділ особисто для вас?</label>
+      <p class="hint">Пересуньте повзунок для кожного рядка: <b>0</b> — не потрібно взагалі,
+        <b>5</b> — нейтрально, <b>10</b> — читаю в першу чергу. Останні позиції в огляді
+        ще немає — оцініть, чи варто їх додати.</p>
+      <div class="rate">
+        <div class="rate-row">
+          <label class="nm" for="r1">Ключові висновки тижня</label>
+          <input type="range" id="r1" name="Корисність · Ключові висновки тижня" min="0" max="10" step="1" value="5">
+          <output class="val" for="r1">5</output>
+        </div>
+        <div class="rate-row">
+          <label class="nm" for="r2">Удари по складах, виробництвах і логістиці<small>об'єкти ланцюга постачання</small></label>
+          <input type="range" id="r2" name="Корисність · Удари по складах, виробництвах і логістиці" min="0" max="10" step="1" value="5">
+          <output class="val" for="r2">5</output>
+        </div>
+        <div class="rate-row">
+          <label class="nm" for="r3">Рекомендації тижня з термінами виконання</label>
+          <input type="range" id="r3" name="Корисність · Рекомендації тижня з термінами виконання" min="0" max="10" step="1" value="5">
+          <output class="val" for="r3">5</output>
+        </div>
+        <div class="rate-row">
+          <label class="nm" for="r4">Рівень загроз по регіонах<small>індекс і динаміка</small></label>
+          <input type="range" id="r4" name="Корисність · Рівень загроз по регіонах" min="0" max="10" step="1" value="5">
+          <output class="val" for="r4">5</output>
+        </div>
+        <div class="rate-row">
+          <label class="nm" for="r5">Карта локалізації ризиків<small>з вашими об'єктами</small></label>
+          <input type="range" id="r5" name="Корисність · Карта локалізації ризиків" min="0" max="10" step="1" value="5">
+          <output class="val" for="r5">5</output>
+        </div>
+        <div class="rate-row">
+          <label class="nm" for="r6">Повітряні удари: обсяги і хронологія</label>
+          <input type="range" id="r6" name="Корисність · Повітряні удари: обсяги і хронологія" min="0" max="10" step="1" value="5">
+          <output class="val" for="r6">5</output>
+        </div>
+        <div class="rate-row">
+          <label class="nm" for="r7">Стан енергосистеми</label>
+          <input type="range" id="r7" name="Корисність · Стан енергосистеми" min="0" max="10" step="1" value="5">
+          <output class="val" for="r7">5</output>
+        </div>
+        <div class="rate-row">
+          <label class="nm" for="r8">Транспорт, логістика і пункти пропуску</label>
+          <input type="range" id="r8" name="Корисність · Транспорт, логістика і пункти пропуску" min="0" max="10" step="1" value="5">
+          <output class="val" for="r8">5</output>
+        </div>
+        <div class="rate-row">
+          <label class="nm" for="r9">Економіка та фінансові наслідки для бізнесу</label>
+          <input type="range" id="r9" name="Корисність · Економіка та фінансові наслідки для бізнесу" min="0" max="10" step="1" value="5">
+          <output class="val" for="r9">5</output>
+        </div>
+        <div class="rate-row">
+          <label class="nm" for="r10">Міжнародні події</label>
+          <input type="range" id="r10" name="Корисність · Міжнародні події" min="0" max="10" step="1" value="5">
+          <output class="val" for="r10">5</output>
+        </div>
+        <div class="rate-row">
+          <label class="nm" for="r11">Комендантська година по областях</label>
+          <input type="range" id="r11" name="Корисність · Комендантська година по областях" min="0" max="10" step="1" value="5">
+          <output class="val" for="r11">5</output>
+        </div>
+        <div class="rate-row new">
+          <label class="nm" for="r12">Кібербезпека та шахрайські схеми<small>поки немає в огляді</small></label>
+          <input type="range" id="r12" name="Корисність · Кібербезпека та шахрайські схеми" min="0" max="10" step="1" value="5">
+          <output class="val" for="r12">5</output>
+        </div>
+        <div class="rate-row new">
+          <label class="nm" for="r13">Зміни нормативної бази<small>поки немає в огляді</small></label>
+          <input type="range" id="r13" name="Корисність · Зміни нормативної бази" min="0" max="10" step="1" value="5">
+          <output class="val" for="r13">5</output>
+        </div>
+        <div class="rate-row new">
+          <label class="nm" for="r14">Ринок праці та рівень зарплат<small>поки немає в огляді</small></label>
+          <input type="range" id="r14" name="Корисність · Ринок праці та рівень зарплат" min="0" max="10" step="1" value="5">
+          <output class="val" for="r14">5</output>
+        </div>
+        <div class="rate-row new">
+          <label class="nm" for="r15">Криміногенна ситуація<small>поки немає в огляді</small></label>
+          <input type="range" id="r15" name="Корисність · Криміногенна ситуація" min="0" max="10" step="1" value="5">
+          <output class="val" for="r15">5</output>
+        </div>
+        <div class="rate-row new">
+          <label class="nm" for="r16">Окремий зріз саме по вашій галузі<small>поки немає в огляді</small></label>
+          <input type="range" id="r16" name="Корисність · Окремий зріз саме по вашій галузі" min="0" max="10" step="1" value="5">
+          <output class="val" for="r16">5</output>
+        </div>
       </div>
-
-      <label class="q">Яких розділів вам бракує?</label>
-      <div class="opts two">
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Кібербезпека"><span>Кібербезпека</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Мінна загроза"><span>Мінна загроза</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Стан ЗАЕС"><span>Стан ЗАЕС</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Військовий облік і мобілізація"><span>Військовий облік і мобілізація</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Зміни законодавства"><span>Зміни нормативної бази</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Ринок праці та зарплати"><span>Ринок праці та зарплати</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Зерновий коридор і порти"><span>Зерновий коридор і порти</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Криміногенна ситуація"><span>Криміногенна ситуація</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Настрої в суспільстві"><span>Настрої в суспільстві</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Залізнична інфраструктура"><span>Залізнична інфраструктура</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Галузевий зріз"><span>Зріз саме по нашій галузі</span></label>
-        <label class="opt"><input type="checkbox" name="Бракує розділів" value="Нічого не бракує"><span>Нічого не бракує</span></label>
-      </div>
-
-      <label class="q" for="drop">Що можна прибрати без втрати для вас?</label>
-      <textarea id="drop" name="Що прибрати" placeholder="Розділи, які ви пропускаєте"></textarea>
+      <div class="rate-ends"><span>0 — прибрати</span><span>5 — нейтрально</span><span>10 — читаю першим</span></div>
     </fieldset>
 
     <!-- 4 ─────────────────────────────────────────── -->
@@ -473,13 +547,15 @@ footer b{color:var(--ink)}
     });
   });
 
-  // обмеження: не більше п'яти позначок у питанні про найкорисніші розділи
-  var top5=f.querySelectorAll('input[name="Найкорисніші розділи"]');
-  top5.forEach(function(c){
-    c.addEventListener('change', function(){
-      var n=0; top5.forEach(function(x){ if(x.checked) n++; });
-      if(n>5){ c.checked=false; }
-    });
+  // живе значення біля кожного слайдера корисності
+  f.querySelectorAll('.rate-row input[type=range]').forEach(function(r){
+    var out=r.parentNode.querySelector('.val');
+    function show(){
+      out.textContent=r.value;
+      out.classList.toggle('zero', r.value==='0');
+    }
+    r.addEventListener('input', show);
+    show();
   });
 })();
 </script>
